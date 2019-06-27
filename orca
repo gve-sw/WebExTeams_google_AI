@@ -1,0 +1,2 @@
+#!/bin/bash
+xvfb-run -a /home/ubuntu/anaconda2/bin/orca "$@"

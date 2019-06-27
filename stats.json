@@ -1,0 +1,31 @@
+{
+    "emotions_stats": {
+        "Joy_likelihood": 268, 
+        "Surprise_likelihood": 35, 
+        "Anger_likelihood": 2, 
+        "Blurred_likelihood": 7, 
+        "Sorrow_likelihood": 1, 
+        "Under_exposed_likelihood": 0, 
+        "Headwear_likelihood": 55
+    }, 
+    "count_stats": {
+        "twitter": 31, 
+        "teams": 5
+    }, 
+    "title": " Emotions ", 
+    "data": {
+        "teams_list": [
+            {
+                "id": "blabla", 
+                "file": "blabla"
+            }
+        ], 
+        "twitter_list": [
+            {
+                "id": "blabla", 
+                "file": "blabla"
+            }
+        ]
+    }, 
+    "twitter_hashtag": " ciscocxai"
+}

@@ -1,0 +1,6 @@
+curl  -X POST  -H "Authorization: Bearer MGVjZGIxYTItZmU2OS00OTcwLWE1NjItMjVmZjM0YmZmMTlmN2VmMTQ4OTctYTY4" -H "Content-Type: application/json" -d '{"roomId":"Y2lzY29zcGFyazovL3VzL1JPT00vMjk0YWUyODAtOTE1NS0xMWU2LTk0YjktMTlhYzNjNGFkMTZj","text":"Hello example","files":["http://www.example.com/images/media.png"]}' https://api.ciscospark.com/v1/messages
+abdelbar@abdelbar-vm:~/my_apps/memebot$ heroku create
+Creating app... done, ⬢ secret-brushlands-95547
+https://secret-brushlands-95547.herokuapp.com/ | https://git.heroku.com/secret-brushlands-95547.git
+
+git commit -m 'added photo serving'git commit -m 'added photo serving'
