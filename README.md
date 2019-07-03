@@ -71,23 +71,8 @@ RESET / title gose here / twtter hashtag goes here : this will set the bot for a
 TWITTER : this will run the emotion analyses on the photos collected from twitter and responde back with a collage of the photos
 SHOW : this will show a pie shart reprentaing the emotional analyses from all the photos submitted
 
-![image alt >](/Reset_bot.png)
-![image alt <](/Twitter_bot.png)
-![image alt ><](/Show_bot.png)
- 
-img[alt$=">"] {
-  float: right;
-}
+<p><img width="30%" style="float: left;" src="Reset_bot.png"><img width="30%" style="float: center;" src="Twitter_bot.png"><img  width="30%" style="float: right;" src="Show_bot.png)"></p>
 
-img[alt$="<"] {
-  float: left;
-}
 
-img[alt$="><"] {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: auto;
-  float: none!important;
-}
+
 
