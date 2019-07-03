@@ -75,5 +75,19 @@ SHOW : this will show a pie shart reprentaing the emotional analyses from all th
 ![image alt <](/Twitter_bot.png)
 ![image alt ><](/Show_bot.png)
  
+img[alt$=">"] {
+  float: right;
+}
 
+img[alt$="<"] {
+  float: left;
+}
+
+img[alt$="><"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  float: none!important;
+}
 
