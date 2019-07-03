@@ -5,6 +5,11 @@ import requests
 import unirest
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
+import os
+
+webexteams_token=os.environ['Webexteams_token']
+
+
 # Disable Certificate warning
 try:
     requests.packages.urllib3.disable_warnings()
@@ -15,13 +20,13 @@ from requests.auth import HTTPBasicAuth
 class sparkapi:
 
   def __init( self, x=0):
-      self.key = 'Bearer ZmZkZTJjZGItMTg4NS00MmIxLTk0N2MtZWM0YTUxMjE3ZTU4N2Q0ZjlkODgtZTI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
+      self.key = webexteams_token
 
   def get_msg(self,id):
       url = "https://api.ciscospark.com/v1/messages/"+id
       payload = ""
       headers = {
-          'Authorization': "Bearer ZmZkZTJjZGItMTg4NS00MmIxLTk0N2MtZWM0YTUxMjE3ZTU4N2Q0ZjlkODgtZTI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+          'Authorization': webexteams_token,
           'cache-control': "no-cache"
           }
 
@@ -32,7 +37,7 @@ class sparkapi:
   def get_file(self,file_url):
     response = requests.request("GET", url=file_url,
       headers={
-        "Authorization": "Bearer ZmZkZTJjZGItMTg4NS00MmIxLTk0N2MtZWM0YTUxMjE3ZTU4N2Q0ZjlkODgtZTI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f"
+        "Authorization": webexteams_token
       }
     )
     return response
@@ -40,7 +45,7 @@ class sparkapi:
   def post_msg(self,grp,msg):
     response = unirest.post("https://api.ciscospark.com/v1/messages/",
       headers={
-        "Authorization": "Bearer ZmZkZTJjZGItMTg4NS00MmIxLTk0N2MtZWM0YTUxMjE3ZTU4N2Q0ZjlkODgtZTI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+        "Authorization": webexteams_token,
         "Content-Type":"application/json"
       },
       params=json.dumps({"roomId":grp,"text":msg})
@@ -50,7 +55,7 @@ class sparkapi:
   def post_msg_markdown(self,grp,msg):
     response = unirest.post("https://api.ciscospark.com/v1/messages/",
       headers={
-        "Authorization": "Bearer ZmZkZTJjZGItMTg4NS00MmIxLTk0N2MtZWM0YTUxMjE3ZTU4N2Q0ZjlkODgtZTI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+        "Authorization": webexteams_token,
         "Content-Type":"application/json"
       },
       params=json.dumps({"roomId":grp,"markdown":msg})
@@ -61,9 +66,9 @@ class sparkapi:
 
     response = unirest.post("https://api.ciscospark.com/v1/messages/", 
       headers={
-        "Authorization": "Bearer ZmZkZTJjZGItMTg4NS00MmIxLTk0N2MtZWM0YTUxMjE3ZTU4N2Q0ZjlkODgtZTI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+        "Authorization": webexteams_token,
         "Content-Type":"application/json"},
-      params=json.dumps({"roomId":grp,"files":["http://ec2-3-81-210-166.compute-1.amazonaws.com:8080/imgs/"+file_o]})
+      params=json.dumps({"roomId":grp,"files":["0.0.0.0:8080/imgs/"+file_o]}) #your host should go here
     ) 
 
   def post_rest_file(self,grp,file_o):
@@ -72,7 +77,7 @@ class sparkapi:
                             'image/png')})
 
       r = requests.post('https://api.ciscospark.com/v1/messages', data=m,
-                        headers={'Authorization': 'Bearer ZmZkZTJjZGItMTg4NS00MmIxLTk0N2MtZWM0YTUxMjE3ZTU4N2Q0ZjlkODgtZTI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f',
+                        headers={'Authorization': webexteams_token,
                         'Content-Type': m.content_type})
 
 
@@ -82,17 +87,7 @@ class sparkapi:
 
     response = unirest.post("https://api.ciscospark.com/v1/messages/", 
       headers={
-        "Authorization": "Bearer ZmZkZTJjZGItMTg4NS00MmIxLTk0N2MtZWM0YTUxMjE3ZTU4N2Q0ZjlkODgtZTI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+        "Authorization": webexteams_token,
         "Content-Type":"application/json"},
       params=json.dumps({"roomId":grp,"files":["https://secret-brushlands-95547.herokuapp.com/txt/"+file_o]})
     )  
-
-
-"""    
-app = sparkapi()
-
-if __name__ == '__main__':
-    #app.get_msg("Y2lzY29zcGFyazovL3VzL01FU1NBR0UvYjg3Y2UyNDAtOTE0Mi0xMWU2LTk0YjktMTlhYzNjNGFkMTZj")
-    app.post_msg('Y2lzY29zcGFyazovL3VzL1JPT00vMjk0YWUyODAtOTE1NS0xMWU2LTk0YjktMTlhYzNjNGFkMTZj','hellow world')
-
-"""

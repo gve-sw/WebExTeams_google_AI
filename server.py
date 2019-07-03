@@ -1,12 +1,21 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+
+#THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+#DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+#FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+#DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+#SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+#CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+#OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+#OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 from flask import Flask
 from flask import request
 import flask
 import json
 from sparkapi import sparkapi
-from memeapi import memeapi
-import shutil
 import os
 import vision_core 
 import plotty
@@ -15,9 +24,9 @@ from logging.config import dictConfig
 
 app = Flask(__name__)
 sparkbot = sparkapi()
-memegen  = memeapi()
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/ubuntu/visionai/secret-brushlands-95547/google_vidion.json'
+
+#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/ubuntu/visionai/secret-brushlands-95547/google_vidion.json'
 
 
 
@@ -53,8 +62,8 @@ def parsing():
         stats_data = json.loads(open('stats.json').read())
         image_plot=plotty.plot_results(stats_data['emotions_stats'],stats_data['title'])
         sparkbot.post_rest_file(str(roomId),image_plot)
-        sparkbot.post_msg_markdown(str(roomId),"### عدد التغريدات  :"+str(stats_data['count_stats']['twitter'])+ "\n"
-                                               "### عدد الصور المحملة :"+str(stats_data['count_stats']['twitter']+stats_data['count_stats']['teams'])+ "\n"
+        sparkbot.post_msg_markdown(str(roomId),"### Number of tweets :"+str(stats_data['count_stats']['twitter'])+ "\n"
+                                               "### Number of photos submited :"+str(stats_data['count_stats']['twitter']+stats_data['count_stats']['teams'])+ "\n"
                                                 )
 
     elif "RESET" in (message_json['text']).upper():
@@ -84,7 +93,7 @@ def parsing():
         sparkbot.post_rest_file(str(roomId),"fake.png")
         
     elif "TWITTER" in (message_json['text']).upper():
-        collage_file = twitterfeeds.twitter_bulk("#ciscosaudiai")
+        collage_file = twitterfeeds.twitter_bulk("#ciscocxai")
         sparkbot.post_rest_file(str(roomId),collage_file)
 
     else:
@@ -117,41 +126,39 @@ def parsing():
                 json.dump(stats_data,jsonfile,indent=4)
             #print results
             faces_n=len(results['faces'])
-            likelihood_name = ('UNKNOWN', 'مستبعد جدا', 'مستبعد', 'محتمل','ممكن', 'ممكن جدا')
+            likelihood_name = ('UNKNOWN', 'VERY UNLIKELY', 'UNLIKELY', 'POSSIBLE','LIKELY', 'VERY LIKELY')
             if faces_n>=1:
                 i=i+1
-                analyses="### صورة: "+str(i)+ "\n"
-                analyses=analyses+"#### عدد الوجوه المكتشفة : "+str(faces_n)+ "\n"
+                analyses="### Image: "+str(i)+ "\n"
+                analyses=analyses+"#### Detected faces : "+str(faces_n)+ "\n"
                 for face in results['faces']:
                     #sparkbot.post_msg_markdown(str(roomId),"# Face: "+str(i))
                     analyses=analyses+"--- \n"
                     is_emotions=False
                     if face['joy_likelihood']>=2:
-                        analyses=analyses+"#### فرح               :"+str(likelihood_name[face['joy_likelihood']])+ "\n"
+                        analyses=analyses+"#### Joy likelihood               :"+str(likelihood_name[face['joy_likelihood']])+ "\n"
                         is_emotions=True
                     if face['sorrow_likelihood']>=2:
-                        analyses=analyses+"#### حزن            :"+str(likelihood_name[face['sorrow_likelihood']])+ "\n"
+                        analyses=analyses+"#### Sorrow likelihood            :"+str(likelihood_name[face['sorrow_likelihood']])+ "\n"
                         is_emotions=True
                     if face['anger_likelihood']>=2:
-                        analyses=analyses+"#### غضب             :"+str(likelihood_name[face['anger_likelihood']])+ "\n"
+                        analyses=analyses+"#### Anger likelihood             :"+str(likelihood_name[face['anger_likelihood']])+ "\n"
                         is_emotions=True
                     if face['surprise_likelihood']>=2:
-                        analyses=analyses+"#### تفاجئ          :"+str(likelihood_name[face['surprise_likelihood']])+ "\n"
+                        analyses=analyses+"#### Surprise likelihood          :"+str(likelihood_name[face['surprise_likelihood']])+ "\n"
                         is_emotions=True
                     if face['under_exposed_likelihood']>=2:
                         analyses=analyses+"#### Under exposed likelihood     :"+str(likelihood_name[face['under_exposed_likelihood']])+ "\n"
                         is_emotions=True
                     if face['blurred_likelihood']>=2:
-                        analyses=analyses+"#### ضبابي            :"+str(likelihood_name[face['blurred_likelihood']])+ "\n"
+                        analyses=analyses+"#### Blurred likelihood           :"+str(likelihood_name[face['blurred_likelihood']])+ "\n"
                         is_emotions=True
                     if face['headwear_likelihood']>=2:
-                        analyses=analyses+"#### لباس رأس          :"+str(likelihood_name[face['headwear_likelihood']])+ "\n"
+                        analyses=analyses+"#### Headwear likelihood          :"+str(likelihood_name[face['headwear_likelihood']])+ "\n"
                         is_emotions=True
                     if is_emotions==False:
                         analyses=analyses+"#### Nothing detected !"
-                    myvar='%.2f' % (face['detection_confidence']*100)
-                    #str(face['detection_confidence']*100)
-                    analyses=analyses+"#### دقة التحليل   :"+myvar+ "\n"
+                    analyses=analyses+"#### Detection confidence         :"+str('{0:.0%}'.format(face['detection_confidence']))+ "\n"
                     
 
                     """

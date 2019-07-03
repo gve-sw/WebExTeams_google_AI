@@ -1,8 +1,9 @@
 import plotly.plotly as py
 import plotly.graph_objs as go
 import plotly.io as pio
+import os
 
-pio.orca.config.executable = '/home/ubuntu/visionai/secret-brushlands-95547/orca'
+pio.orca.config.executable = os.environ['path_to_orca']
 
 def plot_results(emotions_stats,title):
 

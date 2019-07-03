@@ -2,6 +2,7 @@
 """
 Collage maker - tool to create picture collages
 Author: Delimitry
+https://github.com/delimitry/collage_maker/blob/master/LICENSE
 """
 
 import argparse

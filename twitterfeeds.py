@@ -6,14 +6,14 @@ import os
 import collage_maker
 import random
 
-
+import os
 
 def twitter_bulk(hashtag):
 	url = "https://api.twitter.com/1.1/tweets/search/30day/dev.json"
 
 	payload = {"query":hashtag+"  has:images"}
 	headers = {
-	    'Authorization': "Bearer AAAAAAAAAAAAAAAAAAAAAHeb9gAAAAAApqM69%2FGYiTjnkT0SC4ahaAa0DXI%3DNatdu3xMa6q7nXQiVmfHBsMFJK2kfz5NKSDnHDTUtMaUIPSmw0",
+	    'Authorization': os.environ['Twitter_token'],
 	    'Content-Type': "application/json",
 	    'cache-control': "no-cache"
 	     }
