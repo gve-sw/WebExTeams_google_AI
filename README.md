@@ -70,7 +70,10 @@ the bot will responde to the flowing comands :
 RESET / title gose here / twtter hashtag goes here : this will set the bot for a round of emotion analyses it will capture from the photos published using the hashtag
 TWITTER : this will run the emotion analyses on the photos collected from twitter and responde back with a collage of the photos
 SHOW : this will show a pie shart reprentaing the emotional analyses from all the photos submitted
-![Wiring photo][reset] ![Wiring photo][twitter] ![Wiring photo][show]
+| Tables                 | Are                      | Cool                  |
+| -----------------------| ------------------------ | --------------------- |
+| ![Wiring photo][reset] | ![Wiring photo][twitter] | ![Wiring photo][show] |
+ 
 
 [reset]:./Reset_bot.png "Wiring photo"
 [twitter]:./Twitter_bot.png "Wiring photo"
