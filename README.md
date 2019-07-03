@@ -62,16 +62,15 @@ $ python server.py
 
 creat a webexteams space and add the bot , start a conevrsation by mentioning the bot with the comand SHOW.
 if you submitt a photo the bot will respond back with the emotional analyses :
-![Wiring photo][photo]
+<img width="30%" style="float: left;" src="Photo_bot.png">
 
-[photo]:./Photo_bot.png "Wiring photo"
 
 the bot will responde to the flowing comands :
 RESET / title gose here / twtter hashtag goes here : this will set the bot for a round of emotion analyses it will capture from the photos published using the hashtag
 TWITTER : this will run the emotion analyses on the photos collected from twitter and responde back with a collage of the photos
 SHOW : this will show a pie shart reprentaing the emotional analyses from all the photos submitted
 
-<p><img width="30%" style="float: left;" src="Reset_bot.png"><img width="30%" style="float: center;" src="Twitter_bot.png"><img  width="30%" style="float: right;" src="Show_bot.png)"></p>
+<p><img width="30%" style="float: left;" src="Reset_bot.png"><img width="30%" style="float: center;" src="Twitter_bot.png"><img width="30%" style="float: right;" src="Show_bot.png"></p>
 
 
 
