@@ -62,7 +62,8 @@ $ python server.py
 
 creat a webexteams space and add the bot , start a conevrsation by mentioning the bot with the comand SHOW.
 if you submitt a photo the bot will respond back with the emotional analyses :
-<img width="30%" style="float: left;" src="Photo_bot.png">
+
+<p><img width="30%" style="float: left;" src="Photo_bot.png"></p>
 
 
 the bot will responde to the flowing comands :
