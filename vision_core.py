@@ -6,7 +6,7 @@ import os
 from google.cloud import vision
 from google.cloud.vision import types
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/ubuntu/visionai/secret-brushlands-95547/google_vidion.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'google_vidion.json'
 
 
 # The name of the image file to annotate
